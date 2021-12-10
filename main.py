@@ -17,8 +17,10 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
+    if message.content.startswith('$ocr'):
+        await message.channel.send('Processing image...')
+        for i in message.attachments:
+            await i.save(i.filename)
 
 
 client.run(os.getenv('TOKEN'))
